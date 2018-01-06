@@ -1,0 +1,203 @@
+<html>
+<head>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+<script type="text/javascript">
+  var code;
+  function myfunction()
+    { 
+     var c1=document.forms["form1"]["text1"].value;
+     var c2=document.forms["form1"]["text2"].value;
+     var c3=document.forms["form1"]["pass1"].value;
+     var c4=document.forms["form1"]["pass2"].value;
+     var c5=document.forms["form1"]["text3"].value;
+     var c6=document.forms["form1"]["text4"].value;
+
+     if(c1=="")
+     {
+      alert("Name cannot be blank");
+     }
+    
+     if(c2=="")
+     {
+       alert("Username cannot be blank");
+      return false;
+     }
+
+     if(c3=="")
+     {
+      alert("Password cannot be blank");
+      return false;
+     }
+     
+     if(c4=="")
+     {
+     alert("Please enter confirm password");
+      return false;
+     }
+ 
+    if(c5=="")
+    {
+alert("Email Id cannot be left blank");
+      return false;
+    }
+    
+    if(c6=="")
+    {
+    alert("Please enter confirm Email Id");
+      return false;
+    }
+if(c3!=c4)
+{
+  alert("Passwords and confirm password should match!");
+    return false;
+}
+if(c5!=c6)
+{
+  alert("Email Id and confirm Email Id should be same!");
+    return false;
+}
+if(c4.length<7)
+{
+  alert("Password too short! Please Enter a password of length more than 7");
+  return false
+}
+if(check())
+{
+alert("VALID INFO!");
+}
+}
+function captcha()
+{
+   var alpha = new Array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','1','2','3','4','5','6','7','8','9');
+                     var i;
+                     for (i=0;i<6;i++){
+                       var a = alpha[Math.floor(Math.random() * alpha.length)];
+                       var b = alpha[Math.floor(Math.random() * alpha.length)];
+                       var c = alpha[Math.floor(Math.random() * alpha.length)];
+                       var d = alpha[Math.floor(Math.random() * alpha.length)];
+                       var e = alpha[Math.floor(Math.random() * alpha.length)];
+                       var f = alpha[Math.floor(Math.random() * alpha.length)];
+                       var g = alpha[Math.floor(Math.random() * alpha.length)];
+                      }
+                    code = a + ' ' + b + ' ' + ' ' + c + ' ' + d + ' ' + e + ' '+ f + ' ' + g;
+                    return code
+}
+
+function removeSpaces(string){
+                    return string.split(' ').join('');
+                  }  
+
+function check(){
+                      var string1 = removeSpaces(document.forms["form1"]["cap"].value);
+                      var string2 = removeSpaces(document.getElementById('lbltipAddedComment').innerHTML);
+        
+                      if (string1 == string2){
+                        return true;
+                      }
+                      else{        
+                        alert("Captcha code doesnt match! Are you a robot?");
+                      }
+                  }
+                  
+function validate1()
+{
+
+var x=document.form1.pass2.value;
+                    var y=document.form1.pass1.value;
+                    if(x!=y)
+                    {
+                      document.getElementById('error').innerHTML= 'Both the passwords should match!'; 
+                      return false;                
+                    }
+}
+            
+     
+</script>
+<style>
+form input{
+  border-radius: 5px;
+}
+</style>
+<title>form</title>
+</head>
+<body>
+<form name="form1" method="post">
+<fieldset>
+<legend>
+Feedback form
+</legend>
+<span style="color:red">*</span>Required Field
+<br>
+<br>
+<br>
+<b>Name</b><span style="color:red">*</span>
+<input type="text" name="text1" id="txt1" value="Abc" style="margin-left: 200px">
+<br>
+<br>
+<br>
+<b>Username</b><span style="color:red">*</span>
+<input type="text" name="text2" value="abc" style="margin-left: 172px">
+<br>
+<br>
+<br>
+<b>Password</b><span style="color:red">*</span>
+<input type="password" name="pass1" value="*****" style="margin-left: 175px">
+<br>
+<br>
+<br>
+
+
+
+
+<b>Confirm Password</b><span style="color:red">*</span>
+<input type="password" name="pass2" value="*****" style="margin-left: 114px" onblur="validate1()"><span id="error" name="error" style="color:red;margin-left:10px;"></span>
+<br>
+<br>
+<br>
+<b>Email Address</b><span style="color:red">*</span>
+<input type="text" name="text3" value="abc@xyz.com" style="margin-left: 142px ">
+<br>
+<br>
+<br>
+<b>Confirm Email Address</b><span style="color:red">*</span>
+<input type="text" name="text4" value="abc@xyz.com" style="margin-left:80px ">
+<br>
+<br>
+<b style="margin-top:0px;vertical-align: center;">Feedback:</b>
+
+
+
+<textarea rows="4" cols="50" style="margin-top:10px;margin-left:180px;border-radius: 5px;"> </textarea>
+
+
+
+
+<br>
+<br>
+<br>
+<b>Captcha</b><span style="color:red">*</span>
+<label id="lbltipAddedComment" style="margin-left: 184px;background-color: red; border-radius: 5px"  ></label>
+<script>
+  var code=captcha();
+  document.getElementById('lbltipAddedComment').innerHTML = code;
+</script>
+<input type="button" name="refresh" value="Refresh" style="margin-left: 20px" onclick="masala()">
+<script>
+  function masala()
+  {
+  var code=captcha();
+  document.getElementById('lbltipAddedComment').innerHTML = code;
+}
+</script>
+<br>
+<br>
+<br>
+<input type="text" name="cap" style="margin-left: 250px">
+<br>
+</fieldset>
+<br>
+<input type="button" name="sub" value="Submit" style="margin-right:10px"  onclick="myfunction()">
+or  <a href="assignment6.html">Cancel</a>
+</form>
+</body>
+</html>
